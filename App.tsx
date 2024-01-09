@@ -3,8 +3,13 @@ import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import * as Yup from 'yup';
 
+const options = {
+  enableVibrateFallback: true,
+  ignoreAndroidSystemSettings: false,
+};
 
 const PasswordSchema = Yup.object().shape({
   passwordLength: Yup.number()
@@ -65,6 +70,7 @@ export default function App() {
     setSymbols(false);
     setUpperCase(false);
     setNumber(false);
+    ReactNativeHapticFeedback.trigger('impactLight', options);
   };
 
   return (
